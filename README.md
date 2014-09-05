@@ -8,6 +8,4 @@ This set of scripts is something designed to make the tedious process of migrati
 2. Is to pull the audio from the Youtube Video a push it up to Auphonics.  They then process it and upload it to
 
 
-Please feel free to clone, enhance, or write additional ways to process
-audio files and give me pull requests.  If you use them and like them please
-let me know that also at feedback at devopsmastery dot com
+Please feel free to clone, enhance, or write additional ways to process audio files and give me pull requests.  If you use them and like them please let me know that also at feedback at devopsmastery dot com
