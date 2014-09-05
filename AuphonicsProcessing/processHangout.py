@@ -7,8 +7,8 @@ try:
     import requests
     from requests.auth import HTTPBasicAuth
 
-    if int(requests.__version__.split('.')[1]) < 12:
-        print "You may have to upgrade your python requests version!"
+    # if int(requests.__version__.split('.')[1]) < 12:
+    #     print "You may have to upgrade your python requests version!"
 
 except:
     print "Please install python requests!"
@@ -34,18 +34,6 @@ def Get_Services(username,password):
         raise
 
 
-try:
-    ServiceList = Get_Services("wags007@gmail.com","69dpRSTsNKlv")
-except Exception as e:
-    raise type(e)(e.message)
-
-ServiceCount = 0
-print "Available Services:"
-#print "     Type : UUID"
-while ServiceCount < len(ServiceList):
-    ServiceDict = ServiceList[ServiceCount]
-    print ("     %s : %s " % (ServiceDict["type"], ServiceDict['uuid']))
-    ServiceCount = ServiceCount + 1
 
 def main(argv):
         argumentParser = argparse.ArgumentParser(description='Script to pull Hangouts from Youtube and push them to Auphonic')
@@ -62,3 +50,15 @@ def main(argv):
 
 if __name__ == "__main__":
         main(sys.argv[1:])
+        try:
+            ServiceList = Get_Services("wags007@gmail.com","69dpRSTsNKlv")
+        except Exception as e:
+            raise type(e)(e.message)
+
+        ServiceCount = 0
+        print "Available Services:"
+        #print "     Type : UUID"
+        while ServiceCount < len(ServiceList):
+            ServiceDict = ServiceList[ServiceCount]
+            print ("     %s : %s " % (ServiceDict["type"], ServiceDict['uuid']))
+            ServiceCount = ServiceCount + 1
