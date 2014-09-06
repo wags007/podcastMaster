@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 from fabric.api import *
 import os
+env.hosts = ['localhost']
+env.user = 'root'
+env.key_filename = '/root/.ssh/id_rsa'
+
 
 @hosts('localhost')
 def download_from_YouTube(theDownload=None,outputFile=None):
