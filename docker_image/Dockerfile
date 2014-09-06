@@ -34,5 +34,5 @@ RUN git clone https://github.com/wags007/podcastMaster.git
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-VOLUME ["~/output:/podcastMaster/LocalLinuxProcessing/output"]
-CMD ["/podcastMaster/LocalLinuxProcessing/processPodcast.sh"]
+VOLUME ["~/output:/podcastMaster/docker_image/output"]
+CMD ["/podcastMaster/docker_image/processPodcast.sh"]
