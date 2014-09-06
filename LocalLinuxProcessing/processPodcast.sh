@@ -21,5 +21,5 @@ read -p "Enter the podcast name: " -a podcastName
 episodeName=${podcastName}"."${podcastNumber}
 
 echo "Command being run:"|tee ${OUTPUTLOG}
-echo fab convert_podcast:podcastName="${episodeName}",videoName="${URLName}",outputdir="${DIR}/output/${episodeName}"|tee ${OUTPUTLOG}
-fab convert_podcast:podcastName="${episodeName}",videoName="${URLName}",outputdir="${DIR}/output/${episodeName}"|tee ${OUTPUTLOG}
+echo fab -f ${DIR}/fabfile.py convert_podcast:podcastName="${episodeName}",videoName="${URLName}",outputdir="${DIR}/output/${episodeName}"|tee ${OUTPUTLOG}
+fab -f ${DIR}/fabfile.py  convert_podcast:podcastName="${episodeName}",videoName="${URLName}",outputdir="${DIR}/output/${episodeName}"|tee ${OUTPUTLOG}
