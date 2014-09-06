@@ -12,8 +12,6 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
 
 # Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
-#CMD ["service ssh start&&/podcastMaster"]
 RUN sed -i 's/^mesg n$/tty -s \&\& mesg n/g' /root/.profile
 RUN apt-get update && \
     apt-get install -y libav-tools sox python2.7 wget git curl openssh-server python-dev
@@ -32,8 +30,9 @@ RUN  mkdir -p .ssh && \
      cp -a /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 # Grab the scripts from GitHub
 RUN git clone https://github.com/wags007/podcastMaster.git
-RUN mkdir -p /etc/my_init.d && \
-    cp /podcastMaster/docker_image/fromMyInitScript.sh /etc/my_init.d/fromMyInitScript.sh
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+VOLUME ["~/output:/podcastMaster/LocalLinuxProcessing/output"]
+CMD ["/podcastMaster/LocalLinuxProcessing/processPodcast.sh"]
