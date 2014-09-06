@@ -31,8 +31,8 @@ RUN  mkdir -p .ssh && \
      ssh-keygen -b 1024 -f /root/.ssh/id_rsa -N "" && \
      cp -a /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 # Grab the scripts from GitHub
-RUN git clone https://github.com/wags007/podcastMaster.git && \
-    mkdir -p /etc/my_init.d && \
+RUN git clone https://github.com/wags007/podcastMaster.git
+RUN mkdir -p /etc/my_init.d && \
     cp /podcastMaster/docker_image/fromMyInitScript.sh /etc/my_init.d/fromMyInitScript.sh
 
 # Clean up APT when done.
