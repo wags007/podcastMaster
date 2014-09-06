@@ -16,8 +16,9 @@ fi
 
 read -p "Enter the part of the URL for the podcast after the v= : " -a URLName
 read -p "Enter the podcast number: " -a podcastNumber
+read -p "Enter the podcast name: " -a podcastName
 
-episodeName="linuxinstall.net."${podcastNumber}
+episodeName=${podcastName}"."${podcastNumber}
 
 echo "Command being run:"|tee ${OUTPUTLOG}
 echo fab convert_podcast:podcastName="${episodeName}",videoName="${URLName}",outputdir="${DIR}/${episodeName}"|tee ${OUTPUTLOG}

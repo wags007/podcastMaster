@@ -23,7 +23,7 @@ def download_from_YouTube(theDownload=None,outputFile=None):
 def convert_to_FLAC(inputFile=None,outputFile=None):
     try:
         if not inputFile is None and not outputFile is None:
-            theCommand=('ffmpeg -i %s -acodec flac %s' % (inputFile,outputFile))
+            theCommand=('avconv -i %s -acodec flac %s' % (inputFile,outputFile))
             run(theCommand)
         else:
             print "File names were not provided"
@@ -35,7 +35,7 @@ def convert_to_FLAC(inputFile=None,outputFile=None):
 def convert_to_MP3(inputFile=None,outputFile=None):
     try:
         if not inputFile is None and not outputFile is None:
-            theCommand=('ffmpeg -i %s -ab 64k -ac 2 -ar 48000 %s' % (inputFile,outputFile))
+            theCommand=('avconv -i %s -ab 64k -ac 2 -ar 48000 %s' % (inputFile,outputFile))
             run(theCommand)
         else:
             print "File names were not provided"
