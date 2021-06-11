@@ -21,7 +21,7 @@ RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requ
 #     ssh-keygen -b 1024 -f /root/.ssh/id_rsa -N "" && \
 #     cp -a /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 # Grab the scripts from GitHub
-COPY https://github.com/wags007/podcastMaster.git ~/
+RUN cd ~ && git clone https://github.com/wags007/podcastMaster.git
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
