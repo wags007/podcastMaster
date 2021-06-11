@@ -1,20 +1,17 @@
 # This file creates a docker image for PodcastMaster
-#FROM ubuntu:14.04
-FROM phusion/baseimage:latest
-MAINTAINER Brian Wagner <wags007@gmail.com>
+FROM python:3.9-slim
 # Set correct environment variables.
 ENV HOME /root
 ENV TERM linux
 ENV DEBIAN_FRONTEND noninteractive
-# Regenerate SSH host keys. baseimage-docker does not contain any, so you
-# have to do that yourself. You may also comment out this instruction; the
-# init system will auto-generate one during boot.
-RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
 
-# Use baseimage-docker's init system.
+COPY requirements.txt /tmp/pip-tmp/
 RUN sed -i 's/^mesg n$/tty -s \&\& mesg n/g' /root/.profile
-RUN apt-get update && \
-    apt-get install -y libav-tools sox python2.7 wget git curl openssh-server python-dev
+RUN apt-get update && apt upgrade -y && \
+    apt-get install -y libav-tools sox wget git curl
+
+RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
+    && rm -rf /tmp/pip-tmp
 RUN wget https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg && \
     sh setuptools-0.6c11-py2.7.egg &&\
     wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py &&\
